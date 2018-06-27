@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk update \
 	apk upgrade \
-	&& apk add c-ares pcre pcre2 libnfnetlink \
+	&& apk add c-ares pcre pcre2 libnfnetlink json-c \
 	&& apk add --no-cache \
 		--virtual .build-dependencies make gcc musl-dev flex bison autoconf automake c-ares-dev json-c-dev curl libtool pcre2-dev pcre-dev python-dev bsd-compat-headers linux-headers libnfnetlink-dev \
 	&& mkdir /root/frr \
