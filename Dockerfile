@@ -30,4 +30,5 @@ RUN apk update \
 	&& cp -R  /root/frr-release/* / \
 	&& rm -rf /root/frr-release \
 	&& rm -rf /var/cache/apk/* \
+	&& addgroup -S frr \
 	&& adduser -S -D -h /run/frr -s /sbin/nologin -G frr -g frr frr
