@@ -12,7 +12,7 @@ RUN apk update \
 	&& ./configure  CFLAGS="-O2 -pipe" \
 		--enable-fpm --enable-cumulus --enable-datacenter \
 		--disable-doc \
-		--prefix=/usr --sysconfdir=/etc/frr \
+		--prefix=/usr --sysconfdir=/etc/frr --localstatedir=/run/frr \
 		--disable-static  --disable-ripd --disable-ripngd \
 		--disable-isisd --disable-watchfrr --disable-pimd \
 		--disable-vtysh \
@@ -29,4 +29,5 @@ RUN apk update \
 	&& rm -rf /root/frr \
 	&& cp -R  /root/frr-release/* / \
 	&& rm -rf /root/frr-release \
-	&& rm -rf /var/cache/apk/*
+	&& rm -rf /var/cache/apk/* \
+	&& adduser -S -D -h /run/frr -s /sbin/nologin -G frr -g frr frr
