@@ -12,13 +12,13 @@ RUN apk update \
 	&& ./configure  CFLAGS="-O2 -pipe" \
 		--enable-fpm --enable-cumulus --enable-datacenter \
 		--disable-doc \
-		--prefix=/root/frr-release/usr --sysconfdir=/root/frr-release/etc/frr \
+		--prefix=/usr --sysconfdir=/etc/frr \
 		--disable-static  --disable-ripd --disable-ripngd \
 		--disable-isisd --disable-watchfrr --disable-pimd \
 		--disable-vtysh \
 		--disable-babeld --disable-ldpd \
 	&& make -j4 \
-	&& make install \
+	&& make DESTDIR=/root/frr-release install \
 	&& find   /root/frr-release -path \*bin\* -type f -not -name frr\* | xargs strip \
 	&& find   /root/frr-release -name \*.so\* | xargs strip \
 	&& apk del .build-dependencies \
